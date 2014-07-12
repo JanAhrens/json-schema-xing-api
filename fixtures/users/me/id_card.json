@@ -1,0 +1,14 @@
+{
+   "id_card":{
+      "id":"123456_abcdef",
+      "display_name":"Max Mustermann",
+      "permalink":"https://www.xing.com/profile/Max_Mustermann",
+      "photo_urls":{
+         "large":"http://www.xing.com/img/users/e/3/d/f94ef165a.123456,1.140x185.jpg",
+         "mini_thumb":"http://www.xing.com/img/users/e/3/d/f94ef165a.123456,1.18x24.jpg",
+         "thumb":"http://www.xing.com/img/users/e/3/d/f94ef165a.123456,1.30x40.jpg",
+         "medium_thumb":"http://www.xing.com/img/users/e/3/d/f94ef165a.123456,1.57x75.jpg",
+         "maxi_thumb":"http://www.xing.com/img/users/e/3/d/f94ef165a.123456,1.70x93.jpg"
+      }
+   }
+}
