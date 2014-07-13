@@ -7,11 +7,11 @@
   "type": "object",
   "required": ["id"],
   "properties": {
-    "id":                 { "$ref": "scrambled_id.json" },
+    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "the ID will be `null` for the empty user"},
     "first_name":         { "type": "string" },
     "last_name":          { "type": "string" },
     "display_name":       { "type": "string" },
-    "page_name":          { "type": "string", "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$" },
+    "page_name":          { "type": ["string", "null"], "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$", "description": "the empty user profile does not have a page name" },
     "permalink":          { "type": "string", "format": "uri" },
     "employment_status":  { "$ref": "enums.json#definitions/employment_status" },
     "gender":             { "enum": ["m", "f"] },
@@ -32,18 +32,18 @@
     "premium_services": {
       "type": "array",
       "items": { "enum": ["SEARCH", "PRIVATEMESSAGES"] },
-      "uniqueItems": "true"
+      "uniqueItems": true
     },
     "badges": {
       "description": "While premium refers to membership types, other badges refer to the user's status (moderator, etc.) Badges are only used for front-end purposes. A distinction between premium and basic is considered a bad practice: consumers should use the premium-services list for the specific information they want to check!",
       "type": "array",
       "items": { "enum": ["PREMIUM", "MODERATOR"] },
-      "uniqueItems": "true"
+      "uniqueItems": true
     },
-    "wants": { "type": "string", "description": "This is a comma separated list." },
-    "haves": { "type": "string", "description": "This is a comma separated list." },
-    "interests": { "type": "string", "description": "This is a comma separated list." },
-    "organisation_member": { "type": "string", "description": "This is a comma separated list." },
+    "wants": { "type": ["string", "null"], "description": "This is a comma separated list." },
+    "haves": { "type": ["string", "null"], "description": "This is a comma separated list." },
+    "interests": { "type": ["string", "null"], "description": "This is a comma separated list." },
+    "organisation_member": { "type": ["string", "null"], "description": "This is a comma separated list." },
     "languages": {
       "type": "object",
       "description": "The list of languages can include the following abbreviations: de en, es, fi, fr, hu, it, ja, ko, nl, pl, pt, ru, sv, tr, zh, ro, no, cs, el, da, ar, he.",
@@ -65,8 +65,7 @@
         "aim":        { "type": "string" },
         "jabber":     { "type": "string" },
         "googletalk": { "type": "string" }
-      },
-      "required": []
+      }
     },
     "professional_experience": {
       "type": "object",
@@ -85,7 +84,7 @@
           }
         },
         "non_primary_companies": {
-          "type": "object",
+          "type": "array",
           "description": "This field is deprecated. Don't use it any more. It'll be removed in the future."
         }
       }

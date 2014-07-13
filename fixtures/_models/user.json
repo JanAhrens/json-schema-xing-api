@@ -1,0 +1,82 @@
+{
+  "test_cases": {
+    "empty user profile": {
+      "id": null,
+      "first_name": "Inactive member",
+      "last_name": "Inactive member",
+      "display_name": "Inactive member",
+      "page_name": null,
+      "permalink": "",
+      "employment_status": "EMPLOYEE",
+      "gender": "m",
+      "active_email": null,
+      "photo_urls": {
+        "thumb": "http://www.xing.com/img/n/nobody_m.30x40.jpg",
+        "mini_thumb": "http://www.xing.com/img/n/nobody_m.18x24.jpg",
+        "large": "http://www.xing.com/img/n/nobody_m.140x185.jpg",
+        "maxi_thumb": "http://www.xing.com/img/n/nobody_m.70x93.jpg",
+        "medium_thumb": "http://www.xing.com/img/n/nobody_m.57x75.jpg"
+      },
+      "wants": null,
+      "haves": null,
+      "interests": null,
+      "birth_date": {
+        "year": null,
+        "day": null,
+        "month": null
+      },
+      "time_zone": {
+        "name": "Europe/London",
+        "utc_offset": 1
+      },
+      "languages": {},
+      "instant_messaging_accounts": {},
+      "web_profiles": {},
+      "badges": [],
+      "premium_services": [],
+      "educational_background": {
+        "schools": [],
+        "qualifications": []
+      },
+      "professional_experience": {
+        "awards": [],
+        "primary_company": {
+          "url": null,
+          "title": null,
+          "name": null,
+          "tag": null,
+          "end_date": null,
+          "description": null,
+          "industry": "OTHERS",
+          "company_size": null,
+          "begin_date": null,
+          "career_level": null
+        },
+        "non_primary_companies": []
+      },
+      "organisation_member": null,
+      "business_address": {
+        "zip_code": null,
+        "email": null,
+        "province": null,
+        "mobile_phone": null,
+        "city": null,
+        "country": null,
+        "phone": null,
+        "street": null,
+        "fax": null
+      },
+      "private_address": {
+        "zip_code": null,
+        "email": null,
+        "province": null,
+        "mobile_phone": null,
+        "city": null,
+        "country": null,
+        "phone": null,
+        "street": null,
+        "fax": null
+      }
+    }
+  }
+}
