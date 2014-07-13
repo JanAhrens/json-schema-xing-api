@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "A message between multiple XING users",
+  "description": "Messages are always embedded into conversations.",
+
+  "type": "object",
+  "properties": {
+    "id":           { "$ref": "scrambled_id.json" },
+    "created_at":   { "$ref": "iso8601_date.json" },
+    "content":      { "type": "string" },
+    "read":         { "type": "boolean" },
+    "sender":       { "$ref": "user.json" },
+    "attachments":  { "type": "array" }
+  }
+}

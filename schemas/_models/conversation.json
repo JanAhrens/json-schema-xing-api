@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "A conversation between multiple XING users",
+  "description": "Conversations are between multiple participants and contain messages",
+
+  "type": "object",
+  "properties": {
+    "id": { "$ref": "scrambled_id.json" },
+    "subject": { "type": "string" },
+    "message_count": { "type": "integer" },
+    "unread_message_count": { "type": "integer" },
+    "updated_at": { "$ref": "iso8601_date.json" },
+    "read_only": { "type": "boolean" },
+    "participants": { "type": "array", "items": { "$ref": "user.json"} },
+    "latest_messages": { "type": "array", "items": { "$ref": "message.json" } }
+  },
+  "required": ["id", "subject", "message_count", "unread_message_count", "updated_at", "read_only", "participants", "latest_messages"]
+}
