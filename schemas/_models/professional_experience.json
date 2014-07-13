@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id":                  { "$ref": "scrambled_id.json" },
+    "name":                { "type": ["null", "string"] },
+    "title":               { "type": ["null", "string"] },
+    "company_size":        { "$ref": "enums.json#definitions/company_size" },
+    "tag":                 { "type": ["string", "null"] },
+    "url":                 { "type": ["string", "null"], "format": "uri" },
+    "career_level":        { "$ref": "enums.json#definitions/career_level" },
+    "description":         { "type": ["null", "string"] },
+    "begin_date":          { "$ref": "date.json" },
+    "end_date":            { "$ref": "date.json" },
+    "industry":            { "$ref": "enums.json#definitions/industry" },
+    "form_of_employment":  { "$ref": "enums.json#definitions/form_of_employment" },
+    "until_now":           { "type": "boolean" }
+  }
+}

@@ -13,6 +13,9 @@ schemas.reject { |schema_path| schema_path =~ /_models/ }.each do |schema_path|
   if errors.empty?
     puts "ok"
   else
-    puts "error: #{errors.inspect}"
+    puts "error:"
+    errors.each do |e|
+      puts e
+    end
   end
 end
