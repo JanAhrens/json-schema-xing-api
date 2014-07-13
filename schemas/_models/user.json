@@ -113,6 +113,6 @@
         }
       }
     },
-    "photo_urls": { "$ref": "../_models/photo_urls.json" }
+    "photo_urls": { "$ref": "photo_urls.json" }
   }
 }
