@@ -24,13 +24,15 @@ schemas.each do |schema_path|
   tests.each do |key, test|
     errors = JSON::Validator.fully_validate(schema_path, test, validate_schema: true)
     if errors.empty?
-      puts "\033[32m✔\033[39m #{key}"
+      puts "  \033[32m✔\033[39m #{key}"
     else
-      puts "\033[31m✖\033[39m #{key}"
+      puts "  \033[31m✖\033[39m #{key}"
       errors.each do |e|
         puts "   - #{e}"
       end
     end
   end
+
+  puts ""
 
 end
