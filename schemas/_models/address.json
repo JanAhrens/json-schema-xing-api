@@ -1,17 +1,19 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "An address of a XING user",
+  "description": "The data can be partially shared between contacts. That's why all fields can be `null`.",
   "type": "object",
   "properties": {
-    "street": { "type": ["null", "string"] },
-    "zip_code": { "type": ["null", "string"] },
-    "city": { "type": ["null", "string"] },
-    "province": { "type": ["null", "string"] },
-    "country": { "type": ["null", "string"] },
+    "street":        { "type": ["null", "string"] },
+    "zip_code":      { "type": ["null", "string"] },
+    "city":          { "type": ["null", "string"] },
+    "province":      { "type": ["null", "string"] },
+    "country":       { "type": ["null", "string"] },
 
-    "phone": { "type": ["null", "string"] },
-    "mobile_phone": { "type": ["null", "string"] },
-    "fax": { "type": ["null", "string"] },
+    "phone":         { "type": ["null", "string"] },
+    "mobile_phone":  { "type": ["null", "string"] },
+    "fax":           { "type": ["null", "string"] },
 
-    "email": { "type": ["null", "string"], "format": "email" }
+    "email":         { "type": ["null", "string"], "format": "email" }
   }
 }

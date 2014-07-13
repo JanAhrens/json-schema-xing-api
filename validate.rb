@@ -19,7 +19,7 @@ schemas.each do |schema_path|
     tests = {'default' => data}
   end
 
-  puts "#{schema_path}\n"
+  puts "#{schema_path} (#{fixture_path})"
 
   tests.each do |key, test|
     errors = JSON::Validator.fully_validate(schema_path, test, validate_schema: true)
