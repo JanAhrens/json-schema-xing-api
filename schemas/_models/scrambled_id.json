@@ -1,6 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "string",
-  "pattern": "^[0-9]+_[0-9a-f]{6}$",
-  "description": "scrambled user id"
+  "$schema":     "http://json-schema.org/draft-04/schema#",
+  "title":       "A scrambled ID",
+  "description": "Scrambled ID numbers consist of the original ID, an underscore character and the scrambling part.",
+  "type":        "string",
+  "pattern":     "^[0-9]+_[0-9a-f]{6}$"
 }

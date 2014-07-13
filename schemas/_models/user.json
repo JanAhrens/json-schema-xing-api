@@ -7,16 +7,16 @@
   "type": "object",
   "required": ["id"],
   "properties": {
-    "id": { "$ref": "scrambled_id.json" },
-    "first_name": { "type": "string" },
-    "last_name": { "type": "string" },
-    "display_name": { "type": "string" },
-    "page_name": { "type": "string", "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$" },
-    "permalink": { "type": "string", "format": "uri" },
-    "employment_status": { "$ref": "enums.json#definitions/employment_status" },
-    "gender": { "enum": ["m", "f"] },
-    "birth_date": { "$ref": "birth_date.json" },
-    "active_email": {
+    "id":                 { "$ref": "scrambled_id.json" },
+    "first_name":         { "type": "string" },
+    "last_name":          { "type": "string" },
+    "display_name":       { "type": "string" },
+    "page_name":          { "type": "string", "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$" },
+    "permalink":          { "type": "string", "format": "uri" },
+    "employment_status":  { "$ref": "enums.json#definitions/employment_status" },
+    "gender":             { "enum": ["m", "f"] },
+    "birth_date":         { "$ref": "birth_date.json" },
+    "active_email":       {
       "type": ["string", "null"],
       "format": "email",
       "decription": "You can only get this information for the current user. For all other users, the email address can be found under private_address/email or business_address/email, if access was granted."

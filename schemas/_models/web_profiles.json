@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Web profiles of a XING user",
+
   "type": "object",
   "properties": {
     "blog":           { "type": "array", "items": { "type": "string", "format": "uri"} },

@@ -2,12 +2,12 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "id": { "$ref": "../_models/scrambled_id.json" },
-    "name": { "type": "string" },
-    "degree": { "type": ["string", "null"] },
-    "notes": { "type": ["string", "null"] },
-    "subject": { "type": ["string", "null"] },
-    "begin_date": { "$ref": "../_models/date.json" },
-    "end_date": { "$ref": "../_models/date.json" }
+    "id":          { "$ref": "../_models/scrambled_id.json" },
+    "name":        { "type": "string" },
+    "degree":      { "type": ["string", "null"] },
+    "notes":       { "type": ["string", "null"] },
+    "subject":     { "type": ["string", "null"] },
+    "begin_date":  { "$ref": "../_models/date.json" },
+    "end_date":    { "$ref": "../_models/date.json" }
   }
 }

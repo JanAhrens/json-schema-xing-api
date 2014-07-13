@@ -1,28 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "Links to the profile picture of a XING user",
   "type": "object",
+
   "additionalProperties": true,
   "properties": {
-    "large": {
-      "type": "string",
-      "format": "uri"
-    },
-    "thumb": {
-      "type": "string",
-      "format": "uri"
-    },
-    "mini_thumb": {
-      "type": "string",
-      "format": "uri"
-    },
-    "medium_thumb": {
-      "type": "string",
-      "format": "uri"
-    },
-    "maxi_thumb": {
-      "type": "string",
-      "format": "uri"
-    }
+    "large":         { "type": "string", "format": "uri" },
+    "thumb":         { "type": "string", "format": "uri" },
+    "mini_thumb":    { "type": "string", "format": "uri" },
+    "medium_thumb":  { "type": "string", "format": "uri" },
+    "maxi_thumb":    { "type": "string", "format": "uri" }
   },
   "required": [
     "large", "thumb", "mini_thumb",  "medium_thumb", "maxi_thumb"
