@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "Find user by email address search result",
+
+  "type": "object",
+  "required": ["results"],
+  "properties": {
+    "results": {
+      "type": "object",
+      "required": ["items", "total"],
+      "properties": {
+        "items": { "type": "array", "items": { "$ref": "#definitions/email_result"} },
+        "total": { "type": "integer" }
+      }
+    }
+  },
+
+  "definitions": {
+    "email_result": {
+      "type": "object",
+      "properties": {
+        "hash":  { "type": ["null", "string"], "description": "Hashed value of the email address" },
+        "email": { "type": "string", "format": "email" },
+        "user":  { "oneOf": [
+          { "$ref": "../_models/user.json" },
+          { "type": "null" }
+        ]}
+      }
+    }
+  }
+}
