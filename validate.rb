@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rubygems'
 require 'json'
 require 'json-schema'
@@ -21,12 +22,11 @@ schemas.each do |schema_path|
   puts "#{schema_path}\n"
 
   tests.each do |key, test|
-    print "  #{key}: "
     errors = JSON::Validator.fully_validate(schema_path, test, validate_schema: true)
     if errors.empty?
-      puts "ok"
+      puts "\033[32m✔\033[39m #{key}"
     else
-      puts "error"
+      puts "\033[31m✖\033[39m #{key}"
       errors.each do |e|
         puts "   - #{e}"
       end
