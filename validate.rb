@@ -4,18 +4,33 @@ require 'json-schema'
 
 schemas = Dir['schemas/**/*.json']
 
-schemas.reject { |schema_path| schema_path =~ /_models/ }.each do |schema_path|
+schemas.each do |schema_path|
   fixture_path = schema_path.sub('schemas/', 'fixtures/')
+
+  # model files don't need a fixture file
+  next if schema_path =~ /_models/ && !File.exists?(fixture_path)
 
   data = JSON.parse(File.read(fixture_path))
 
-  errors = JSON::Validator.fully_validate(schema_path, data, validate_schema: true)
-  if errors.empty?
-    puts "ok"
+  if data.keys == ['test_cases']
+    tests = data['test_cases']
   else
-    puts "error:"
-    errors.each do |e|
-      puts e
+    tests = {'default' => data}
+  end
+
+  puts "#{schema_path}\n"
+
+  tests.each do |key, test|
+    print "  #{key}: "
+    errors = JSON::Validator.fully_validate(schema_path, test, validate_schema: true)
+    if errors.empty?
+      puts "ok"
+    else
+      puts "error"
+      errors.each do |e|
+        puts "   - #{e}"
+      end
     end
   end
+
 end

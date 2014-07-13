@@ -1,0 +1,13 @@
+{
+  "test_cases": {
+    "array with one entry": {
+      "blog": ["http://myblog.invalid"]
+    },
+    "array with more than one entry": {
+      "youtube": ["http://youtube.com/foo", "http://youtube.com/bar"]
+    },
+    "not known service": {
+      "unknown": []
+    }
+  }
+}

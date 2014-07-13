@@ -35,6 +35,5 @@
     "yelp":           { "type": "array", "items": { "type": "string", "format": "uri"} },
     "youtube":        { "type": "array", "items": { "type": "string", "format": "uri"} },
     "zoominfo":       { "type": "array", "items": { "type": "string", "format": "uri"} }
-  },
-  "required": []
+  }
 }
