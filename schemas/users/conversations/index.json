@@ -1,16 +1,17 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+
   "title": "Schema for the conversations index call: /v1/users/{user_id}/conversations",
   "type": "object",
+
   "properties": {
     "conversations": {
       "type": "object",
       "properties": {
-        "total": { "type": "string", "description": "The value is always an integer wrapped in a string. It's a mistake that this is a string." },
-        "unread_count": { "type": "string", "description": "The value is always an integer wrapped in a string. It's a mistake that this is a string."  },
-        "items": { "type": "array", "items": { "$ref": "../../_models/conversation.json" } }
-      },
-      "additionalProperties": false
+        "total":         { "type": "string", "description": "The value is always an integer wrapped in a string." },
+        "unread_count":  { "type": "string", "description": "The value is always an integer wrapped in a string." },
+        "items":         { "type": "array", "items": { "$ref": "../../_models/conversation.json" } }
+      }
     }
   },
   "required": ["conversations"],
