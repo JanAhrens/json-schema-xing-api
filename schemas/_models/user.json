@@ -1,6 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "title": "A XING user",
+  "description": "All fields of the user can be filtered, expect the `id`. This is why only `id` is a required field.",
+
   "type": "object",
+  "required": ["id"],
   "properties": {
     "id": { "$ref": "scrambled_id.json" },
     "first_name": { "type": "string" },
@@ -8,20 +13,9 @@
     "display_name": { "type": "string" },
     "page_name": { "type": "string", "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$" },
     "permalink": { "type": "string", "format": "uri" },
-    "employment_status": {
-      "enum": ["ENTREPRENEUR", "FREELANCER", "EMPLOYEE", "EXECUTIVE", "RECRUITER", "PUBLIC_SERVANT", "STUDENT", "UNEMPLOYED", "RETIRED"]
-    },
+    "employment_status": { "$ref": "enums.json#definitions/employment_status" },
     "gender": { "enum": ["m", "f"] },
-    "birth_date": {
-      "description": "You may have no access to the birth_date (all values null), only access to the day and month (year is null) or to the full date (no field is null).",
-      "type": "object",
-      "properties": {
-        "day": { "type": ["int", "null"] },
-        "month": { "type": ["int", "null" ] },
-        "year": { "type": ["int", "null" ] }
-      },
-      "required": ["day", "month", "year"]
-    },
+    "birth_date": { "$ref": "birth_date.json" },
     "active_email": {
       "type": ["string", "null"],
       "format": "email",
@@ -46,22 +40,10 @@
       "items": { "enum": ["PREMIUM", "MODERATOR"] },
       "uniqueItems": "true"
     },
-    "wants": {
-      "type": "string",
-      "description": "This is a comma separated list."
-    },
-    "haves": {
-      "type": "string",
-      "description": "This is a comma separated list."
-    },
-    "interests": {
-      "type": "string",
-      "description": "This is a comma separated list."
-    },
-    "organisation_member": {
-      "type": "string",
-      "description": "This is a comma separated list."
-    },
+    "wants": { "type": "string", "description": "This is a comma separated list." },
+    "haves": { "type": "string", "description": "This is a comma separated list." },
+    "interests": { "type": "string", "description": "This is a comma separated list." },
+    "organisation_member": { "type": "string", "description": "This is a comma separated list." },
     "languages": {
       "type": "object",
       "description": "The list of languages can include the following abbreviations: de en, es, fi, fr, hu, it, ja, ko, nl, pl, pt, ru, sv, tr, zh, ro, no, cs, el, da, ar, he.",
@@ -70,47 +52,9 @@
       },
       "additionalProperties": false
     },
-    "private_address": { "$ref": "../_models/address.json" },
-    "business_address": { "$ref": "../_models/address.json" },
-    "web_profiles": {
-      "type": "object",
-      "properties": {
-        "blog":           { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "delicious":      { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "digg":           { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "doodle":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "dopplr":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "ebay":           { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "facebook":       { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "flickr":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "foursquare":     { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "github":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "google_plus":    { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "homepage":       { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "last_fm":        { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "lifestream_fm":  { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "mindmeister":    { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "mister_wong":    { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "other":          { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "photobucket":    { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "plazes":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "qype":           { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "reddit":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "second_life":    { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "sevenload":      { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "slideshare":     { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "sorceforge":     { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "spreed":         { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "stumble_upon":   { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "twitter":        { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "vimeo":          { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "wikipedia":      { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "yelp":           { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "youtube":        { "type": "array", "items": { "type": "string", "format": "uri"} },
-        "zoominfo":       { "type": "array", "items": { "type": "string", "format": "uri"} }
-      },
-      "required": []
-    },
+    "private_address": { "$ref": "address.json" },
+    "business_address": { "$ref": "address.json" },
+    "web_profiles": { "$ref": "web_profiles.json" },
     "instant_messaging_accounts": {
       "type": "object",
       "properties": {
@@ -127,8 +71,8 @@
     "professional_experience": {
       "type": "object",
       "properties": {
-        "primary_company": { "$ref": "../_models/professional_experience.json" },
-        "companies": { "type": "array", "items": { "$ref": "../_models/professional_experience.json" } },
+        "primary_company": { "$ref": "professional_experience.json" },
+        "companies": { "type": "array", "items": { "$ref": "professional_experience.json" } },
         "awards": {
           "type": "array",
           "items": {
@@ -155,13 +99,13 @@
         },
         "primary_school": {
           "anyOf": [
-            { "$ref": "../_models/school.json" },
+            { "$ref": "school.json" },
             { "type": "null" }
           ]
         },
         "schools": {
           "type": "array",
-          "items": { "$ref": "../_models/school.json" }
+          "items": { "$ref": "school.json" }
         },
         "qualifications": {
           "type": "array",
@@ -170,6 +114,5 @@
       }
     },
     "photo_urls": { "$ref": "../_models/photo_urls.json" }
-  },
-  "required": ["id"]
+  }
 }
