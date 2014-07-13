@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "string",
+  "pattern": "^[0-9]+_[a-f]{6}$",
+  "description": "scrambled user id"
+}

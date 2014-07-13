@@ -5,46 +5,10 @@
     "id_card": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "[0-9]+_[a-f]{6}",
-          "description": "scrambled user id"
-        },
-        "display_name": {
-          "type": "string"
-        },
-        "permalink": {
-          "type": "string",
-          "format": "uri"
-        },
-        "photo_urls": {
-          "type": "object",
-          "properties": {
-            "large": {
-              "type": "string",
-              "format": "uri"
-            },
-            "thumb": {
-              "type": "string",
-              "format": "uri"
-            },
-            "mini_thumb": {
-              "type": "string",
-              "format": "uri"
-            },
-            "medium_thumb": {
-              "type": "string",
-              "format": "uri"
-            },
-            "maxi_thumb": {
-              "type": "string",
-              "format": "uri"
-            }
-          },
-          "required": [
-            "large", "thumb", "mini_thumb",  "medium_thumb", "maxi_thumb"
-          ]
-        }
+        "id":            { "$ref": "../../_models/scrambled_id.json" },
+        "display_name":  { "type": "string"},
+        "permalink":     { "type": "string", "format": "uri" },
+        "photo_urls":    { "$ref": "../../_models/photo_urls.json" }
       },
       "required": [
         "id", "display_name", "permalink", "photo_urls"

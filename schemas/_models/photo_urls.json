@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "large": {
+      "type": "string",
+      "format": "uri"
+    },
+    "thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "mini_thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "medium_thumb": {
+      "type": "string",
+      "format": "uri"
+    },
+    "maxi_thumb": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "large", "thumb", "mini_thumb",  "medium_thumb", "maxi_thumb"
+  ]
+}

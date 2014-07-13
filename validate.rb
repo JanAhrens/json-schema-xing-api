@@ -4,7 +4,7 @@ require 'json-schema'
 
 schemas = Dir['schemas/**/*.json']
 
-schemas.each do |schema_path|
+schemas.reject { |schema_path| schema_path =~ /_models/ }.each do |schema_path|
   fixture_path = schema_path.sub('schemas/', 'fixtures/')
 
   data = JSON.parse(File.read(fixture_path))
