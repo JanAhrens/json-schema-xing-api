@@ -1,11 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
+
+  "title": "Get user details /v1/users/{ids}",
+  "type":  "object",
+
   "properties": {
     "users": {
-      "type": "array",
+      "type":  "array",
       "items": { "$ref": "../_models/user.json" }
     }
   },
-  "requiredProperties": ["users"]
+
+  "required": ["users"],
+  "additionalProperties": false
 }
