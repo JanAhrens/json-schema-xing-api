@@ -12,3 +12,10 @@ this.
 The this repository is heavily inspired by the
 [Balanced API Specification repository](https://github.com/balanced/balanced-api). Thank
 you for providing such an inspiring resource publicly!
+
+# Resources
+
+* [Understanding JSON Schema](https://spacetelescope.github.io/understanding-json-schema)
+* [draft-zyp-json-schema-04](http://tools.ietf.org/id/draft-zyp-json-schema-04.txt)
+* [draft-fge-json-schema-validation-00](http://tools.ietf.org/id/draft-fge-json-schema-validation-00.txt)
+* [json-schema.org](http://json-schema.org/)
