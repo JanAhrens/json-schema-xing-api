@@ -5,9 +5,9 @@
     "id_card": {
       "type": "object",
       "properties": {
-        "id":            { "$ref": "../../_models/scrambled_id.json" },
-        "display_name":  { "type": "string"},
-        "permalink":     { "type": "string", "format": "uri" },
+        "id":            { "$ref": "../../_models/scrambled_id.json", "example": "123_abcdef" },
+        "permalink":     { "type": "string", "format": "uri", "example": "https://www.xing.com/profile/Max_Mustermann" },
+        "display_name":  { "type": "string", "example": "Max Mustermann" },
         "photo_urls":    { "$ref": "../../_models/photo_urls.json" }
       },
       "required": [

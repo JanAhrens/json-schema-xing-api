@@ -7,19 +7,27 @@
   "type": "object",
   "required": ["id"],
   "properties": {
-    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "the ID will be `null` for the empty user"},
-    "first_name":         { "type": "string" },
-    "last_name":          { "type": "string" },
-    "display_name":       { "type": "string" },
-    "page_name":          { "type": ["string", "null"], "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$", "description": "the empty user profile does not have a page name" },
-    "permalink":          { "type": "string", "format": "uri" },
-    "employment_status":  { "$ref": "enums.json#definitions/employment_status" },
-    "gender":             { "enum": ["m", "f"] },
-    "birth_date":         { "$ref": "birth_date.json" },
+    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "the ID will be `null` for the empty user", "example": "123_abcdef" },
+    "first_name":         { "type": "string", "example": "Max" },
+    "last_name":          { "type": "string", "example": "Mustermann" },
+    "display_name":       { "type": "string", "example": "Max Mustermann" },
+    "page_name":          { "type": ["string", "null"], "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$", "description": "the empty user profile does not have a page name", "example": "Max_Mustermann" },
+    "permalink":          { "type": "string", "format": "uri", "example": "https://www.xing.com/profile/Max_Mustermann" },
+    "employment_status":  { "$ref": "enums.json#definitions/employment_status", "example": "EMPLOYEE" },
+    "gender":             { "enum": ["m", "f"], "example": "m" },
+    "birth_date":         {
+      "$ref": "birth_date.json",
+      "example": {
+        "day": 12,
+        "month": 8,
+        "year": 1963
+      }
+    },
     "active_email":       {
       "type": ["string", "null"],
       "format": "email",
-      "decription": "You can only get this information for the current user. For all other users, the email address can be found under private_address/email or business_address/email, if access was granted."
+      "decription": "You can only get this information for the current user. For all other users, the email address can be found under private_address/email or business_address/email, if access was granted.",
+      "example": "max.mustermann@xing.com"
     },
     "time_zone": {
       "type": "object",
@@ -27,7 +35,11 @@
         "name": { "type": "string", "description": "A list of valid time zones can be obtained from https://www.iana.org/time-zones" },
         "utc_offset": { "type": "number" }
       },
-      "required": ["name", "utc_offset"]
+      "required": ["name", "utc_offset"],
+      "example": {
+        "name": "Europe/London",
+        "utc_offset": 2.0
+      }
     },
     "premium_services": {
       "type": "array",
