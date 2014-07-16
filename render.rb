@@ -1,3 +1,7 @@
+# A primitive JSON schema renderer that renders either just the
+# structure of the JSON file or uses the "example" property to fill in
+# sample data (if present)
+
 require 'json'
 require 'json-schema'
 require 'erubis'
