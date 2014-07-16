@@ -1,6 +1,9 @@
 # A primitive JSON schema renderer that renders either just the
 # structure of the JSON file or uses the "example" property to fill in
-# sample data (if present)
+# sample data (if present).
+
+# It's an experiment. Please don't expect well written and tested
+# code. This is as ugly as it can get!
 
 require 'json'
 require 'json-schema'
@@ -85,11 +88,11 @@ def render_object(path, schema, offset, name = nil, has_more = false)
 
   has_title = schema['title']
 
-  "<div class=\"row\" data-type=\"object\">\n"+
-  "  <div class=\"#{col offset}\">#{prop(name, has_title) if name}{</div>\n" +
+  "#{indent(offset)}<div class=\"row\" data-type=\"object\">\n"+
+    "#{indent(offset+1)}<div class=\"#{col offset}\">#{prop(name, has_title) if name}{</div>\n" +
     text +
-  "  <div class=\"#{col offset}\">}#{"," if has_more}</div>\n" +
-  '</div>'
+    "#{indent(offset+1)}<div class=\"#{col offset}\">}#{"," if has_more}</div>\n" +
+  "#{indent(offset)}</div>"
 end
 
 def render_string(path, schema, offset)
