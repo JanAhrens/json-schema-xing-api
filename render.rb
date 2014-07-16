@@ -14,8 +14,8 @@ def col(offset)
   "col-xs-#{12 - offset} col-xs-offset-#{offset}"
 end
 
-def prop(name)
-  name.inspect + ": "
+def prop(name, has_title)
+  "\"<span class=\"#{"has-title" if has_title}\">#{name}</span>\": "
 end
 
 def navigate_to(schema, position)
@@ -30,7 +30,7 @@ def render_array(path, schema, offset, name = nil)
   debug("render_array(#{path}, #{schema}, #{offset}, #{name})")
   content = schema['items'] ? render_schema(path, schema['items'], offset+1) : ''
   indent(offset) + "<div class=\"row\" data-type=\"array\">\n" +
-    indent(offset+1) + "<div class=\"#{col offset}\">#{prop(name) if name}[</div>\n" +
+    indent(offset+1) + "<div class=\"#{col offset}\">#{prop(name, false) if name}[</div>\n" +
       content +
     indent(offset+1) + "<div class=\"#{col offset}\">]</div>\n" +
   indent(offset) + "</div>\n"
@@ -72,12 +72,17 @@ def render_object(path, schema, offset, name = nil, has_more = false)
     JSON::Validator.validate!(schema, schema['example'])
     text = render_object_properties(path, schema['example'], offset)
   else
-    text = render_object_properties(path, schema['properties'], offset)
+    if schema['properties']
+      text = render_object_properties(path, schema['properties'], offset)
+    else
+      text = render_object_properties(path, schema, offset)
+    end
   end
 
+  has_title = schema['title']
 
   "<div class=\"row\" data-type=\"object\">\n"+
-  "  <div class=\"#{col offset}\">#{prop(name) if name}{</div>\n" +
+  "  <div class=\"#{col offset}\">#{prop(name, has_title) if name}{</div>\n" +
     text +
   "  <div class=\"#{col offset}\">}#{"," if has_more}</div>\n" +
   '</div>'
@@ -208,7 +213,7 @@ def render_schema(path, schema, offset)
   end
 end
 
-path = File.expand_path('../schemas/users/me/id_card.json', __FILE__)
+path = File.expand_path('../schemas/users/show.json', __FILE__)
 schema = JSON.parse(File.read(path))
 schema = deep_dereference(path, schema)
 content = render_schema(path, schema, 0)
