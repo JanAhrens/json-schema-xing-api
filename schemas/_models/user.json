@@ -1,13 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
 
-  "title": "A XING user",
+  "title": "XING user",
   "description": "There is a special user profile, the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile), that will be returned whenever the user doesn't exists.\n\nMost fields are filled with values, but for some there is no value. Have a look at the [documentation](https://dev.xing.com/docs/user_profile#empty-user-profile) for details.",
 
   "type": "object",
   "required": ["id"],
   "properties": {
-    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "Warning: The user ID will be `null`, when the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile) is returned.", "example": "123_abcdef" },
+    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "**Warning**: The user `id` will be `null`, when the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile) is returned.", "example": "123_abcdef" },
     "first_name":         { "type": "string", "example": "Max" },
     "last_name":          { "type": "string", "example": "Mustermann" },
     "display_name":       { "type": "string", "example": "Dr. Max Mustermann", "description": "The `display_name` consists of the `first_name`, `last_name` and an academic title (if present)." },

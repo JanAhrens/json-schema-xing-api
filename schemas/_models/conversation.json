@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
 
-  "title": "A conversation between multiple XING users",
-  "description": "Conversations are between multiple participants and contain messages",
+  "title": "Conversation",
+  "description": "Conversations are between multiple participants and contain messages.",
 
   "type": "object",
   "properties": {
@@ -11,9 +11,9 @@
     "message_count":         { "type": "integer" },
     "unread_message_count":  { "type": "integer" },
     "updated_at":            { "$ref": "iso8601_date.json" },
-    "read_only":             { "type": "boolean" },
+    "read_only":             { "type": "boolean", "description": "There are conversations where you can't reply. Those are marked as `read_only`." },
     "participants":          { "type": "array", "items": { "$ref": "user.json"} },
-    "latest_messages":       { "type": "array", "items": { "$ref": "message.json" } }
+    "latest_messages":       { "type": "array", "items": { "$ref": "message.json" }, "description": "A preview of the `latest_messages` in the conversation. Use the messages call to paginate through all messages." }
   },
   "required": ["id", "subject", "message_count", "unread_message_count", "updated_at", "read_only", "participants", "latest_messages"]
 }
