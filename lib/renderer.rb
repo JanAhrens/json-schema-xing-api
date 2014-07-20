@@ -18,11 +18,16 @@ end
 def description(schema, offset)
   title = ''
   if schema.has_key?('title')
-    title = "# #{schema['title']}"
+    title = markdown("# #{schema['title']}")
   end
 
+  description = ''
   if schema.has_key?('description')
-    "#{indent(offset+1)}<div class=\"#{col offset} description\"><div class=\"alert alert-info\">#{markdown(title + "\n\n" + schema['description'])}</div></div>"
+    description = markdown(schema['description'])
+  end
+
+  if title || description
+    "#{indent(offset+1)}<div class=\"#{col offset} description\"><div class=\"alert alert-info\">#{title + description}</div></div>"
   else
     ''
   end

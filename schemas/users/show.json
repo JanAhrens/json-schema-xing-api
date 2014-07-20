@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
 
   "title": "Get user details /v1/users/{ids}",
-  "description": "",
+  "description": "Returns up to 100 XING user profiles.",
 
   "type":  "object",
 
