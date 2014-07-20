@@ -22,6 +22,8 @@ This repository is heavily inspired by the
 [Balanced API Specification repository](https://github.com/balanced/balanced-api). Thank
 you for providing this inspiring resource publicly!
 
+The documenation generator was inspired by [prmd](https://github.com/interagent/prmd).
+
 # Resources
 
 * [Understanding JSON Schema](https://spacetelescope.github.io/understanding-json-schema)
