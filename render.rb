@@ -176,9 +176,9 @@ end
 
 path = File.expand_path('../schemas/users/show.json', __FILE__)
 schema = JSON.parse(File.read(path))
-schema = deep_dereference(path, schema)
-schema = transform(schema, "")
-content = render_schema(schema, 0)
+dereferenced_schema = deep_dereference(path, schema.deep_dup)
+transformed_schema = transform(dereferenced_schema.deep_dup, "")
+content = render_schema(transformed_schema, 0)
 template = File.read(File.expand_path('../template.erb', __FILE__))
 erb = Erubis::Eruby.new(template)
 puts erb.result(binding());

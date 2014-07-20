@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
 
   "title": "A XING user",
+  "description": "There is a special user profile, the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile), that will be returned whenever the user doesn't exists.\n\nMost fields are filled with values, but for some there is no value. Have a look at the [documentation](https://dev.xing.com/docs/user_profile#empty-user-profile) for details.",
 
   "type": "object",
   "required": ["id"],

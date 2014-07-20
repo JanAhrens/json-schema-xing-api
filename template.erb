@@ -13,15 +13,22 @@
     </style>
   </head>
   <body>
-    <div class="container code">
-      <%= content %>
+    <div class="container">
+      <h1>Example response</h1>
+      <span class="code">
+        <%= content %>
+      </span>
+
+      <h1>JSON schema</h1>
+      <pre class="pre-scrollable"><%= JSON.pretty_generate(schema) %></pre>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">
      $(document).ready(function () {
          $('.has-description').each(function () {
              $(this).click(function () {
-                 $(this).parent().find('.description').toggle();
+                 $(this).parent().find('> .description').toggle();
              });
          });
      });
