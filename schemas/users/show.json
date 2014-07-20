@@ -7,7 +7,9 @@
   "properties": {
     "users": {
       "type":  "array",
-      "items": { "$ref": "../_models/user.json" }
+      "items": { "$ref": "../_models/user.json" },
+      "minItems": 1,
+      "maxItems": 100
     }
   },
 

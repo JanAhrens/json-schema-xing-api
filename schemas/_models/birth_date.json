@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "A user's birth date",
+  "description": "There are three possibilities how the `day`, `month` and `year` fields are filled:\n\n- all fields are `null`: the birth date is not shared\n- `year` is `null`: only the day of birth, but not the birth year is shared\n- all fields contain values: the full birth date is shared",
   "oneOf": [
     {
       "title": "full birth date",

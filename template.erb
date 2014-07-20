@@ -7,12 +7,24 @@
     <title>API doc</title>
     <style type="text/css">
      .code { font-family: monospace; }
-     .has-title { font-weight: bold; background-color: red; }
+     .description { display: none; }
+     .has-description { cursor: pointer; }
+     .has-description:hover { text-decoration: underline; }
     </style>
   </head>
   <body>
     <div class="container code">
       <%= content %>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+     $(document).ready(function () {
+         $('.has-description').each(function () {
+             $(this).click(function () {
+                 $(this).parent().find('.description').toggle();
+             });
+         });
+     });
+    </script>
   </body>
 </html>

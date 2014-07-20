@@ -2,16 +2,15 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
 
   "title": "A XING user",
-  "description": "All fields of the user can be filtered, expect the `id`. This is why only `id` is a required field.",
 
   "type": "object",
   "required": ["id"],
   "properties": {
-    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "the ID will be `null` for the empty user", "example": "123_abcdef" },
+    "id":                 { "oneOf": [{ "$ref": "scrambled_id.json" }, { "type": "null" }], "description": "Warning: The user ID will be `null`, when the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile) is returned.", "example": "123_abcdef" },
     "first_name":         { "type": "string", "example": "Max" },
     "last_name":          { "type": "string", "example": "Mustermann" },
-    "display_name":       { "type": "string", "example": "Max Mustermann" },
-    "page_name":          { "type": ["string", "null"], "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$", "description": "the empty user profile does not have a page name", "example": "Max_Mustermann" },
+    "display_name":       { "type": "string", "example": "Dr. Max Mustermann", "description": "The `display_name` consists of the `first_name`, `last_name` and an academic title (if present)." },
+    "page_name":          { "type": ["string", "null"], "pattern": "^[A-Za-z]+_[A-Za-z]+[0-9]*$", "description": "The `page_name` is `null` for the the [empty user profile](https://dev.xing.com/docs/user_profile#empty-user-profile).", "example": "Max_Mustermann" },
     "permalink":          { "type": "string", "format": "uri", "example": "https://www.xing.com/profile/Max_Mustermann" },
     "employment_status":  { "$ref": "enums.json#definitions/employment_status", "example": "EMPLOYEE" },
     "gender":             { "enum": ["m", "f"], "example": "m" },
@@ -26,7 +25,7 @@
     "active_email":       {
       "type": ["string", "null"],
       "format": "email",
-      "decription": "You can only get this information for the current user. For all other users, the email address can be found under private_address/email or business_address/email, if access was granted.",
+      "description": "You can only get this information for the current user. For all other users, the email address can be found under `/private_address/email` or `business_address/email`, if access was granted.",
       "example": "max.mustermann@xing.com"
     },
     "time_zone": {
@@ -41,32 +40,82 @@
         "utc_offset": 2.0
       }
     },
+
     "premium_services": {
       "type": "array",
       "items": { "enum": ["SEARCH", "PRIVATEMESSAGES"] },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "example": ["SEARCH", "PRIVATEMESSAGES"]
     },
+
     "badges": {
-      "description": "While premium refers to membership types, other badges refer to the user's status (moderator, etc.) Badges are only used for front-end purposes. A distinction between premium and basic is considered a bad practice: consumers should use the premium-services list for the specific information they want to check!",
+      "description": "While `PREMIUM` refers to membership types, other badges refer to the user's status (`MODERATOR`, etc.)\n\nBadges are only used for front-end purposes. A distinction between premium and basic is considered a bad practice: consumers should use the `premium_services` list for the specific information they want to check!",
       "type": "array",
       "items": { "enum": ["PREMIUM", "MODERATOR"] },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "example": ["PREMIUM", "MODERATOR"]
     },
-    "wants": { "type": ["string", "null"], "description": "This is a comma separated list." },
-    "haves": { "type": ["string", "null"], "description": "This is a comma separated list." },
-    "interests": { "type": ["string", "null"], "description": "This is a comma separated list." },
-    "organisation_member": { "type": ["string", "null"], "description": "This is a comma separated list." },
+
+    "wants": { "type": ["string", "null"], "description": "This is a comma separated list.", "example": "einen neuen Job" },
+    "haves": { "type": ["string", "null"], "description": "This is a comma separated list.", "example": "viele tolle Skills"},
+    "interests": { "type": ["string", "null"], "description": "This is a comma separated list.", "example": "Flitzebogen schießen and so on" },
+    "organisation_member": { "type": ["string", "null"], "description": "This is a comma separated list.", "example": "ACM, GI" },
+
     "languages": {
       "type": "object",
-      "description": "The list of languages can include the following abbreviations: de en, es, fi, fr, hu, it, ja, ko, nl, pl, pt, ru, sv, tr, zh, ro, no, cs, el, da, ar, he.",
+      "description": "The list of languages can include the following abbreviations: `de`, `en`, `es`, `fi`, `fr`, `hu`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `ru`, `sv`, `tr`, `zh`, `ro`, `no`, `cs`, `el`, `da`, `ar`, `he`.",
       "patternProperties": {
         "^[a-z]{2}$": { "enum": [null, "BASIC", "GOOD", "FLUENT", "NATIVE"] }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "example": {
+        "de": "NATIVE",
+        "en": "FLUENT",
+        "fr": null,
+        "zh": "BASIC"
+      }
     },
-    "private_address": { "$ref": "address.json" },
-    "business_address": { "$ref": "address.json" },
-    "web_profiles": { "$ref": "web_profiles.json" },
+
+    "private_address": {
+      "$ref": "address.json",
+      "example": {
+        "city": "Hamburg",
+        "country": "DE",
+        "zip_code": "20357",
+        "street": "Privatstraße 1",
+        "phone": "49|40|1234560",
+        "fax": "||",
+        "province": "Hamburg",
+        "email": "max@mustermann.de",
+        "mobile_phone": "49|0155|1234567"
+      }
+    },
+
+    "business_address": {
+      "$ref": "address.json",
+      "example": {
+        "city": "Hamburg",
+        "country": "DE",
+        "zip_code": "20357",
+        "street": "Geschäftsstraße 1a",
+        "phone": "49|40|1234569",
+        "fax": "49|40|1234561",
+        "province": "Hamburg",
+        "email": "max.mustermann@xing.com",
+        "mobile_phone": "49|160|66666661"
+      }
+    },
+
+    "web_profiles": {
+      "$ref": "web_profiles.json",
+      "example": {
+        "qype": ["http://qype.de/users/foo"],
+        "google_plus": ["http://plus.google.com/foo"],
+        "blog": ["http://blog.example.org"],
+        "homepage": ["http://example.org", "http://other-example.org"]
+      }
+    },
+
     "instant_messaging_accounts": {
       "type": "object",
       "properties": {
@@ -77,13 +126,98 @@
         "aim":        { "type": "string" },
         "jabber":     { "type": "string" },
         "googletalk": { "type": "string" }
+      },
+      "example": {
+        "skype": "1122334455",
+        "googletalk": "max.mustermann"
       }
     },
+
     "professional_experience": {
       "type": "object",
       "properties": {
-        "primary_company": { "$ref": "professional_experience.json" },
-        "companies": { "type": "array", "items": { "$ref": "professional_experience.json" } },
+        "primary_company": {
+          "description": "`primary_company` is always an object, even if the user does not have a primary company. All fields will be empty in that case.",
+          "$ref": "professional_experience.json",
+          "example": {
+            "id": "1_abcdef",
+            "name": "XING AG",
+            "title": "Softwareentwickler",
+            "company_size": "201-500",
+            "tag": null,
+            "url": "http://www.xing.com",
+            "career_level": "PROFESSIONAL_EXPERIENCED",
+            "begin_date": "2010-01",
+            "description": null,
+            "end_date": null,
+            "industry": "AEROSPACE",
+            "form_of_employment": "FULL_TIME_EMPLOYEE",
+            "until_now": true
+          }
+        },
+
+        "companies": {
+          "type": "array",
+          "items": { "$ref": "professional_experience.json" },
+          "example": [{
+            "id": "1_abcdef",
+            "name": "XING AG",
+            "title": "Softwareentwickler",
+            "company_size": "201-500",
+            "tag": null,
+            "url": "http://www.xing.com",
+            "career_level": "PROFESSIONAL_EXPERIENCED",
+            "begin_date": "2010-01",
+            "description": null,
+            "end_date": null,
+            "industry": "AEROSPACE",
+            "form_of_employment": "FULL_TIME_EMPLOYEE",
+            "until_now": true
+          }, {
+            "id": "24_abcdef",
+            "name": "Ninja Ltd.",
+            "title": "DevOps",
+            "company_size": null,
+            "tag": "NINJA",
+            "url": "http://www.ninja-ltd.co.uk",
+            "career_level": null,
+            "begin_date": "2009-04",
+            "description": null,
+            "end_date": "2010-07",
+            "industry": "ALTERNATIVE_MEDICINE",
+            "form_of_employment": "OWNER",
+            "until_now": false
+          }, {
+            "id": "45_abcdef",
+            "name": null,
+            "title": "Wiss. Mitarbeiter",
+            "company_size": null,
+            "tag": "OFFIS",
+            "url": "http://www.uni.de",
+            "career_level": null,
+            "begin_date": "2007",
+            "description": null,
+            "end_date": "2008",
+            "industry": "APPAREL_AND_FASHION",
+            "form_of_employment": "PART_TIME_EMPLOYEE",
+            "until_now": false
+          }, {
+            "id": "176_abcdef",
+            "name": null,
+            "title": "TEST NINJA",
+            "company_size": "201-500",
+            "tag": "TESTCOMPANY",
+            "url": null,
+            "career_level": "ENTRY_LEVEL",
+            "begin_date": "1998-12",
+            "description": null,
+            "end_date": "1999-05",
+            "industry": "ARTS_AND_CRAFTS",
+            "form_of_employment": "INTERN",
+            "until_now": false
+          }]
+        },
+
         "awards": {
           "type": "array",
           "items": {
@@ -93,14 +227,65 @@
               "date_awarded":  { "type": "integer" },
               "url":           { "type": ["null", "string"], "format": "uri" }
             }
-          }
+          },
+          "example": [{
+            "name": "Awesome Dude Of The Year",
+            "date_awarded": 2007,
+            "url": null
+          }]
         },
+
         "non_primary_companies": {
           "type": "array",
-          "description": "This field is deprecated. Don't use it any more. It'll be removed in the future."
+          "description": "This field is **deprecated**. Don't use it any more. Use `companies` instead. The `non_primary_companies` field will be removed in the future.",
+          "items": { "$ref": "professional_experience.json" },
+          "example": [{
+            "id": "24_abcdef",
+            "name": "Ninja Ltd.",
+            "title": "DevOps",
+            "company_size": null,
+            "tag": "NINJA",
+            "url": "http://www.ninja-ltd.co.uk",
+            "career_level": null,
+            "begin_date": "2009-04",
+            "description": null,
+            "end_date": "2010-07",
+            "industry": "ALTERNATIVE_MEDICINE",
+            "form_of_employment": "OWNER",
+            "until_now": false
+          }, {
+            "id": "45_abcdef",
+            "name": null,
+            "title": "Wiss. Mitarbeiter",
+            "company_size": null,
+            "tag": "OFFIS",
+            "url": "http://www.uni.de",
+            "career_level": null,
+            "begin_date": "2007",
+            "description": null,
+            "end_date": "2008",
+            "industry": "APPAREL_AND_FASHION",
+            "form_of_employment": "PART_TIME_EMPLOYEE",
+            "until_now": false
+          }, {
+            "id": "176_abcdef",
+            "name": null,
+            "title": "TEST NINJA",
+            "company_size": "201-500",
+            "tag": "TESTCOMPANY",
+            "url": null,
+            "career_level": "ENTRY_LEVEL",
+            "begin_date": "1998-12",
+            "description": null,
+            "end_date": "1999-05",
+            "industry": "ARTS_AND_CRAFTS",
+            "form_of_employment": "INTERN",
+            "until_now": false
+          }]
         }
       }
     },
+
     "educational_background": {
       "type": "object",
       "properties": {
@@ -109,6 +294,7 @@
           "description": "The latest awarded academic degree."
         },
         "primary_school": {
+          "description": "When the user does not have a primary school, it will be `null`.",
           "anyOf": [
             { "$ref": "school.json" },
             { "type": "null" }
@@ -122,8 +308,31 @@
           "type": "array",
           "items": { "type": "string" }
         }
+      },
+      "example": {
+        "degree": "MSc CE/CS",
+        "primary_school": {
+          "id": "42_abcdef",
+          "name": "Carl-von-Ossietzky Universtät Schellenburg",
+          "degree": "MSc CE/CS",
+          "notes": null,
+          "subject": null,
+          "begin_date": "1998-08",
+          "end_date": "2005-02"
+        },
+        "schools": [{
+          "id": "42_abcdef",
+          "name": "Carl-von-Ossietzky Universtät Schellenburg",
+          "degree": "MSc CE/CS",
+          "notes": null,
+          "subject": null,
+          "begin_date": "1998-08",
+          "end_date": "2005-02"
+        }],
+        "qualifications": ["TOEFLS", "PADI AOWD"]
       }
     },
+
     "photo_urls": { "$ref": "photo_urls.json" }
   }
 }
