@@ -11,14 +11,14 @@ def transform(schema, pointer, example_value = nil)
   return unless schema
 
   if schema.has_key?('example') || !example_value.nil?
-    example = schema.has_key?('example') ? schema['example'].to_json : example_value
+    example = example_value.nil? ? schema['example'].to_json : example_value
     if !JSON::Validator.validate(schema, example)
       raise "#{pointer}: Value \"#{schema['example'].inspect}\" failed validation against schema \"#{schema.inspect}\""
     end
   end
 
   if %w(integer boolean number string).include?(schema['type']) || schema.has_key?('enum')
-    if !schema.has_key?('example') && !example_value.nil?
+    if !example_value.nil?
       schema.merge!("example" => from_json(example_value))
     end
     schema

@@ -12,9 +12,9 @@ class TransformNumberTest < MiniTest::Test
     assert_equal expected_result, result
   end
 
-  def test_existing_examples_have_precedence
+  def test_outside_examples_have_precedence
     schema = { "type" => "number", "example" => 42.1 }
-    expected_result = { "type" => "number", "example" => 42.1 }
+    expected_result = { "type" => "number", "example" => 23.5 }
 
     result = transform(schema, '', 23.5.to_json)
 
@@ -32,9 +32,9 @@ class TransformIntegerTest < MiniTest::Test
     assert_equal expected_result, result
   end
 
-  def test_existing_examples_have_precedence
+  def test_outside_examples_have_precedence
     schema = { "type" => "integer", "example" => 23 }
-    expected_result = { "type" => "integer", "example" => 23 }
+    expected_result = { "type" => "integer", "example" => 5 }
 
     result = transform(schema, '', 5.to_json)
 
@@ -55,7 +55,7 @@ class TransformStringTest < MiniTest::Test
   def test_existing_examples_have_precedence
     schema = { "type" => "string", "example" => "existing" }
 
-    expected_result = { "type" => "string", "example" => "existing"  }
+    expected_result = { "type" => "string", "example" => "overwrite?"  }
 
     result = transform(schema, '', "overwrite?".to_json)
 

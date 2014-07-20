@@ -61,6 +61,7 @@ end
 def render_array(schema, offset, name = nil, has_more = false)
   debug("render_array(#{schema}, #{offset}, #{name}, #{has_more})")
 
+  content = ''
   if schema['items'].is_a?(Hash)
     content = render_schema(schema['items'], offset + 1)
   elsif schema['items'].is_a?(Array)
@@ -174,7 +175,14 @@ def render_schema(schema, offset, name = nil, has_more = nil)
   end
 end
 
-path = File.expand_path('../schemas/users/show.json', __FILE__)
+if ARGV.length < 1;
+  STDERR.puts "#{$0} path"
+  exit
+end
+
+filename = ARGV[0]
+
+path = File.expand_path("../#{filename}", __FILE__)
 schema = JSON.parse(File.read(path))
 dereferenced_schema = deep_dereference(path, schema.deep_dup)
 transformed_schema = transform(dereferenced_schema.deep_dup, "")
