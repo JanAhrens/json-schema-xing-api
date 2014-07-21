@@ -92,6 +92,8 @@
 
         "companies": {
           "type": "array",
+          "title": "All companies of the user",
+          "description": "The `professional_experience/primary_company` is part of this list.\n\nYou can identify the primary company in this list by comparing the `id` of each entry with `professional_experience/primary_company/id`.",
           "items": { "$ref": "professional_experience.json" }
         },
 

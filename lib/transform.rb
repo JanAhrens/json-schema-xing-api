@@ -121,7 +121,7 @@ def transform(schema, pointer, example_value = nil)
       schema.delete(keyword)
       schema.delete('example') if schema.has_key?('example')
 
-      schema.merge!(transform(matching_schema, "#{pointer}/oneOf/#{index}", example.to_json))
+      schema.reverse_merge!(transform(matching_schema, "#{pointer}/oneOf/#{index}", example.to_json))
     end
     schema
   else

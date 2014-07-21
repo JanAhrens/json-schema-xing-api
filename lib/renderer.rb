@@ -26,7 +26,7 @@ def description(schema, offset)
     description = markdown(schema['description'])
   end
 
-  if title || description
+  if title.length > 1 || description.length > 1
     "#{indent(offset+1)}<div class=\"#{col offset} description\"><div class=\"alert alert-info\">#{title + description}</div></div>"
   else
     ''
