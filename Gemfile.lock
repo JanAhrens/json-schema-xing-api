@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/janahrens/json-schema-documentation.git
+  revision: e427ec19198d28ebe56504f472636b7d5ab3a43d
+  specs:
+    json-schema-documentation (0.0.1)
+      activesupport
+      json-schema
+      multi_json
+      redcarpet
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -11,15 +21,15 @@ GEM
     erubis (2.7.0)
     i18n (0.6.9)
     json (1.8.1)
-    json-schema (2.2.2)
+    json-schema (2.2.4)
     method_source (0.8.2)
     minitest (5.3.5)
-    multi_json (1.9.2)
+    multi_json (1.10.1)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    redcarpet (2.3.0)
+    redcarpet (3.1.2)
     slop (3.6.0)
     thread_safe (0.3.4)
     tzinfo (1.2.1)
@@ -31,7 +41,5 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   erubis
-  json-schema
-  multi_json
+  json-schema-documentation!
   pry
-  redcarpet

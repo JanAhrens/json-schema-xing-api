@@ -5,9 +5,9 @@
 # It's an experiment. Please don't expect well written and tested
 # code. This is as ugly as it can get!
 
-require_relative './lib/deep_dereference'
-require_relative './lib/transform'
-require_relative './lib/renderer'
+require 'json-schema/documentation'
+
+include JSON::Schema::Documentation
 
 if ARGV.length < 1;
   STDERR.puts "#{$0} path"
